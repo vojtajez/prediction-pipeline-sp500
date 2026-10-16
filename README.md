@@ -11,63 +11,11 @@ An automated data pipeline that fetches S&P 500 market data, calculates technica
 - **Daily Execution**: Configured with GitHub Actions to run every day at 00:00 UTC.
 - **Evaluation Loop**: Automatically evaluates previous predictions as new market data becomes available.
 
-## Project Structure
-
-```text
-├── .github/workflows/   # CI/CD configuration
-├── src/
-│   ├── api/             # API clients (if any)
-│   ├── models/          # ML model definitions (Base & Specialized)
-│   ├── pipeline/        # Core pipeline logic (Collector, Runner, Database)
-│   └── utils/           # Shared utilities (Logging, DB initialization)
-├── main.py              # Entry point for the daily pipeline
-└── requirements.txt     # Project dependencies
-```
-
 ## Prerequisites
 
 - Python 3.10+
 - PostgreSQL database
 - (Optional) GitHub account for automated daily runs
-
-## Setup Instructions
-
-### 1. Clone the repository
-
-```bash
-git clone https://github.com/yourusername/sp500_pipeline.git
-cd sp500_pipeline
-```
-
-### 2. Create a virtual environment
-
-```bash
-python -m venv venv
-source venv/bin/activate  # On Windows: venv\Scripts\activate
-```
-
-### 3. Install dependencies
-
-```bash
-pip install -r requirements.txt
-```
-
-### 4. Configuration
-
-Create a `.env` file in the root directory with your PostgreSQL connection string:
-
-```text
-DATABASE_URL=postgresql://user:password@localhost:5432/yourdb
-```
-
-### 5. Initialize the Database
-
-Run the initialization script to create the necessary tables and indexes:
-
-```bash
-export PYTHONPATH=$PYTHONPATH:.
-python src/utils/db_init.py
-```
 
 ## Usage
 
@@ -83,7 +31,3 @@ The pipeline will:
 3. Save new market data to the database.
 4. Evaluate any pending predictions from previous days.
 5. Generate and save new predictions for the next trading day.
-
-## License
-
-MIT
